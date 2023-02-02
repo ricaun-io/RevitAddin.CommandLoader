@@ -35,6 +35,10 @@ namespace RevitAddin.CommandLoader.Revit
 
             application.ControlledApplication.ApplicationInitialized += ControlledApplication_ApplicationInitialized;
 
+#if DEBUG
+            ribbonPanel.GetRibbonPanel().CustomPanelTitleBarBackground = System.Windows.Media.Brushes.Salmon;
+#endif
+
             return Result.Succeeded;
         }
         public Result OnShutdown(UIControlledApplication application)
@@ -70,8 +74,6 @@ namespace RevitAddin.CommandLoader.Revit
                 var button = ribbonPanelAssembly
                     .AddItem(ribbonPanel.NewPushButtonData(command));
 
-                button.SetLargeImage(ImageGeneratorUtils.GetLargeImageUri());
-
                 if (command.TryGetAttribute(out DisplayNameAttribute displayNameAttribute))
                 {
                     if (!string.IsNullOrEmpty(displayNameAttribute.DisplayName))
@@ -86,14 +88,21 @@ namespace RevitAddin.CommandLoader.Revit
                         button.SetToolTip(descriptionAttribute.Description);
                     }
                 }
+
+                var needImage = true;
                 if (command.TryGetAttribute(out DesignerAttribute designerAttribute))
                 {
                     if (!string.IsNullOrEmpty(designerAttribute.DesignerTypeName))
                     {
                         button.SetLargeImage(designerAttribute.DesignerTypeName);
+                        needImage = false;
                     }
                 }
 
+                if (needImage)
+                {
+                    button.SetLargeImage(ImageGeneratorUtils.GetLargeImageUri());
+                }
             }
         }
 
