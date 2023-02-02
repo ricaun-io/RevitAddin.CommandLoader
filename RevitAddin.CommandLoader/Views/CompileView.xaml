@@ -1,0 +1,27 @@
+﻿<Window x:Class="RevitAddin.CommandLoader.Views.CompileView"
+        d:DataContext="{d:DesignInstance Type=vms:CompileViewModel}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RevitAddin.CommandLoader.Views"
+        xmlns:vms="clr-namespace:RevitAddin.CommandLoader.ViewModels"
+        Title="{Binding Title}"
+        Icon="{Binding Icon}"
+        Background="WhiteSmoke"
+        mc:Ignorable="d">
+
+    <StackPanel Margin="15">
+        <TextBox Text="{Binding Text}"
+                 MinHeight="320"
+                 MaxHeight="320"
+                 MinWidth="640"
+                 MaxWidth="640"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Visible"></TextBox>
+        <Grid Margin="4"/>
+        <Button Height="24"
+                Command="{Binding Command}">Compile Code</Button>
+    </StackPanel>
+</Window>

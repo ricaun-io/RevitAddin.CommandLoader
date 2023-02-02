@@ -14,6 +14,8 @@ namespace RevitAddin.CommandLoader.Revit.Commands
         {
             UIApplication uiapp = commandData.Application;
 
+            new ViewModels.CompileViewModel().Show();
+
             return Result.Succeeded;
         }
 
