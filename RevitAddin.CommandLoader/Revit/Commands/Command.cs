@@ -8,13 +8,18 @@ namespace RevitAddin.CommandLoader.Revit.Commands
 {
     [DisplayName("Command Open UI")]
     [Transaction(TransactionMode.Manual)]
-    public class Command : IExternalCommand
+    public class Command : IExternalCommand, IExternalCommandAvailability
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
         {
             UIApplication uiapp = commandData.Application;
 
             return Result.Succeeded;
+        }
+
+        public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
+        {
+            return true;
         }
     }
 }
