@@ -31,7 +31,7 @@ namespace RevitAddin.CommandLoader.Revit
                 .SetLongDescription(AppName.GetInfo())
                 .SetContextualHelp("https://github.com/ricaun-io/RevitAddin.CommandLoader");
 
-            service = new GithubRequestService("ricaun-io", "ricaun.Revit.RevitAddin.CommandLoader");
+            service = new GithubRequestService("ricaun-io", "RevitAddin.CommandLoader");
 
             application.ControlledApplication.ApplicationInitialized += ControlledApplication_ApplicationInitialized;
 
