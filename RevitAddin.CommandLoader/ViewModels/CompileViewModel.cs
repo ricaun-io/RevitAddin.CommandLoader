@@ -1,4 +1,5 @@
-﻿using RevitAddin.CommandLoader.Views;
+﻿using RevitAddin.CommandLoader.Extensions;
+using RevitAddin.CommandLoader.Views;
 using ricaun.Revit.Mvvm;
 using ricaun.Revit.UI;
 using System;
@@ -21,7 +22,7 @@ namespace RevitAddin.CommandLoader.ViewModels
         #endregion
 
         #region View / Window
-        public string Title { get; set; } = $"RevitAddin.CommandLoader";
+        public string Title { get; set; } = AppName.GetNameVersion();
         public object Icon { get; set; } = Properties.Resources.CommandLoader.GetBitmapSource();
         public CompileView Window { get; private set; }
         public void Show()

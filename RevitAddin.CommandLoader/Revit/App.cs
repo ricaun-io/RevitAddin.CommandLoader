@@ -25,7 +25,7 @@ namespace RevitAddin.CommandLoader.Revit
             ribbonPanel.CreatePushButton<Commands.Command>("Command\rLoader")
                 .SetLargeImage(Properties.Resources.CommandLoader.GetBitmapSource())
                 .SetToolTip("Open CommandLoader window that compiles Revit code and creates pushbuttons for each `IExternalCommand`, `IExternalCommandAvailability` could be used in the same class to enable the availability features.")
-                .SetLongDescription(GetLongDescription())
+                .SetLongDescription(AppName.GetInfo())
                 .SetContextualHelp("https://github.com/ricaun-io/RevitAddin.CommandLoader");
 
             service = new GithubRequestService("ricaun-io", "ricaun.Revit.RevitAddin.CommandLoader");
@@ -41,17 +41,6 @@ namespace RevitAddin.CommandLoader.Revit
 
             application.ControlledApplication.ApplicationInitialized -= ControlledApplication_ApplicationInitialized;
             return Result.Succeeded;
-        }
-
-        private string GetLongDescription()
-        {
-            var assembly = this.GetType().Assembly;
-            var assemblyName = assembly.GetName();
-            var result = $"App: {assemblyName.Name}\n";
-            result += $"Version: {assemblyName.Version.ToString(3)}\n";
-            result += $"Location: {assembly.Location}";
-
-            return result;
         }
 
         private void ControlledApplication_ApplicationInitialized(object sender, Autodesk.Revit.DB.Events.ApplicationInitializedEventArgs e)
