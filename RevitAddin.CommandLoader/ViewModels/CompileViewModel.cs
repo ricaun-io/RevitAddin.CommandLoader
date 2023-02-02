@@ -3,7 +3,11 @@ using RevitAddin.CommandLoader.Views;
 using ricaun.Revit.Mvvm;
 using ricaun.Revit.UI;
 using System;
+using Revit.Async;
 using System.Windows;
+using System.Threading.Tasks;
+using RevitAddin.CommandLoader.Services;
+using RevitAddin.CommandLoader.Revit;
 
 namespace RevitAddin.CommandLoader.ViewModels
 {
@@ -13,7 +17,8 @@ namespace RevitAddin.CommandLoader.ViewModels
 
         #region Public Properties
         public string Text { get; set; } = GetText();
-        public IRelayCommand Command => new RelayCommand(CompileText);
+        public bool EnableText { get; set; } = true;
+        public IAsyncRelayCommand Command => new AsyncRelayCommand(CompileText);
         #endregion
 
         #region Constructor
@@ -42,9 +47,27 @@ namespace RevitAddin.CommandLoader.ViewModels
         #endregion
 
         #region Private Methods
-        private void CompileText()
+        private async Task CompileText()
         {
-            Console.WriteLine(Text);
+            EnableText = false;
+            try
+            {
+                await RevitTask.RunAsync(() => {
+                    try
+                    {
+                        var assembly = new CodeDomService().GenerateCode(Text);
+                        App.CreateCommands(assembly);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        System.Windows.MessageBox.Show(ex.ToString());
+                    }
+                });
+            }
+            finally
+            {
+                EnableText = true;
+            }
         }
 
         private static string GetText()

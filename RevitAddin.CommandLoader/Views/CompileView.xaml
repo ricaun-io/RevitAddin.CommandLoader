@@ -19,6 +19,7 @@
                  MaxWidth="640"
                  TextWrapping="Wrap"
                  AcceptsReturn="True"
+                 IsEnabled="{Binding EnableText}"
                  VerticalScrollBarVisibility="Visible"></TextBox>
         <Grid Margin="4"/>
         <Button Height="24"

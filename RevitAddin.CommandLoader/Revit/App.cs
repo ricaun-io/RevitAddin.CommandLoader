@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Linq;
 using RevitAddin.CommandLoader.Extensions;
 using System.ComponentModel;
+using Revit.Async;
 
 namespace RevitAddin.CommandLoader.Revit
 {
@@ -20,6 +21,8 @@ namespace RevitAddin.CommandLoader.Revit
         private static UIControlledApplication UIControlledApplication;
         public Result OnStartup(UIControlledApplication application)
         {
+            RevitTask.Initialize(application);
+
             UIControlledApplication = application;
             ribbonPanel = application.CreatePanel("CommandLoader");
             ribbonPanel.CreatePushButton<Commands.Command>("Command\rLoader")
