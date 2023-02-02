@@ -9,8 +9,10 @@ namespace RevitAddin.CommandLoader.ViewModels
 {
     public class CompileViewModel : ObservableObject
     {
+        public static CompileViewModel ViewModel { get; set; } = new CompileViewModel();
+
         #region Public Properties
-        public string Text { get; set; }
+        public string Text { get; set; } = GetText();
         public IRelayCommand Command => new RelayCommand(CompileText);
         #endregion
 
@@ -43,6 +45,36 @@ namespace RevitAddin.CommandLoader.ViewModels
         private void CompileText()
         {
             Console.WriteLine(Text);
+        }
+
+        private static string GetText()
+        {
+            return @"using System;
+using System.ComponentModel;
+using Autodesk.Revit.Attributes;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+
+namespace RevitAddin
+{
+    [DisplayName(""Command Name"")]
+    [Description(""This is a command tooltip"")]
+    [Designer("" / UIFrameworkRes;component/ribbon/images/revit.ico"")]
+    [Transaction(TransactionMode.Manual)]
+    public class Command : IExternalCommand, IExternalCommandAvailability
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
+        {
+            UIApplication uiapp = commandData.Application;
+            System.Windows.MessageBox.Show(uiapp.Application.VersionName);
+            return Result.Succeeded;
+        }
+        public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
+        {
+            return true;
+        }
+    }
+}";
         }
         #endregion
     }
