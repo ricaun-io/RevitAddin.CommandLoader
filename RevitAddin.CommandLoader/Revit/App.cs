@@ -35,6 +35,10 @@ namespace RevitAddin.CommandLoader.Revit
 
             application.ControlledApplication.ApplicationInitialized += ControlledApplication_ApplicationInitialized;
 
+#if DEBUG
+            ribbonPanel.GetRibbonPanel().CustomPanelTitleBarBackground = System.Windows.Media.Brushes.Salmon;
+#endif
+
             return Result.Succeeded;
         }
         public Result OnShutdown(UIControlledApplication application)
