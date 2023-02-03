@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace RevitAddin.CommandLoader.Revit.Commands
 {
-    [DisplayName("Command Open UI")]
+    [DisplayName("Command Open - CompileView")]
     [Transaction(TransactionMode.Manual)]
     public class Command : IExternalCommand, IExternalCommandAvailability
     {
