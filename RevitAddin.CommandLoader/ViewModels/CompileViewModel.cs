@@ -1,19 +1,21 @@
-﻿using RevitAddin.CommandLoader.Extensions;
+﻿using Revit.Async;
+using RevitAddin.CommandLoader.Extensions;
+using RevitAddin.CommandLoader.Revit;
+using RevitAddin.CommandLoader.Services;
 using RevitAddin.CommandLoader.Views;
 using ricaun.Revit.Mvvm;
 using ricaun.Revit.UI;
 using System;
-using Revit.Async;
-using System.Windows;
 using System.Threading.Tasks;
-using RevitAddin.CommandLoader.Services;
-using RevitAddin.CommandLoader.Revit;
+using System.Windows;
 
 namespace RevitAddin.CommandLoader.ViewModels
 {
     public class CompileViewModel : ObservableObject
     {
+        #region Public Static
         public static CompileViewModel ViewModel { get; set; } = new CompileViewModel();
+        #endregion
 
         #region Public Properties
         public string Text { get; set; } = GetText();
@@ -52,7 +54,8 @@ namespace RevitAddin.CommandLoader.ViewModels
             EnableText = false;
             try
             {
-                await RevitTask.RunAsync(() => {
+                await RevitTask.RunAsync(() =>
+                {
                     try
                     {
                         var assembly = new CodeDomService().GenerateCode(Text);
@@ -80,9 +83,9 @@ using Autodesk.Revit.UI;
 
 namespace RevitAddin
 {
-    [DisplayName(""Command Name"")]
-    [Description(""This is a command tooltip"")]
-    [Designer("" / UIFrameworkRes;component/ribbon/images/revit.ico"")]
+    [DisplayName(""Revit\rVersion"")]
+    [Description(""Show a Window with the Revit VersionName."")]
+    [Designer(""/UIFrameworkRes;component/ribbon/images/revit.ico"")]
     [Transaction(TransactionMode.Manual)]
     public class Command : IExternalCommand, IExternalCommandAvailability
     {
