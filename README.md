@@ -43,9 +43,9 @@ using Autodesk.Revit.UI;
 
 namespace RevitAddin
 {
-    [DisplayName(""Revit\rVersion"")]
-    [Description(""Show a Window with the Revit VersionName."")]
-    [Designer(""/UIFrameworkRes;component/ribbon/images/revit.ico"")]
+    [DisplayName("Revit\rVersion")]
+    [Description("Show a Window with the Revit VersionName.")]
+    [Designer("/UIFrameworkRes;component/ribbon/images/revit.ico")]
     [Transaction(TransactionMode.Manual)]
     public class Command : IExternalCommand, IExternalCommandAvailability
     {
