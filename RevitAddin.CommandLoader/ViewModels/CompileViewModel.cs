@@ -18,7 +18,7 @@ namespace RevitAddin.CommandLoader.ViewModels
         #endregion
 
         #region Public Properties
-        public string Text { get; set; } = GetText();
+        public string Text { get; set; } = CodeSamples.Command;
         public bool EnableText { get; set; } = true;
         public IAsyncRelayCommand Command => new AsyncRelayCommand(CompileText);
         #endregion
@@ -71,36 +71,6 @@ namespace RevitAddin.CommandLoader.ViewModels
             {
                 EnableText = true;
             }
-        }
-
-        private static string GetText()
-        {
-            return @"using System;
-using System.ComponentModel;
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-
-namespace RevitAddin
-{
-    [DisplayName(""Revit\rVersion"")]
-    [Description(""Show a Window with the Revit VersionName."")]
-    [Designer(""/UIFrameworkRes;component/ribbon/images/revit.ico"")]
-    [Transaction(TransactionMode.Manual)]
-    public class Command : IExternalCommand, IExternalCommandAvailability
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
-        {
-            UIApplication uiapp = commandData.Application;
-            System.Windows.MessageBox.Show(uiapp.Application.VersionName);
-            return Result.Succeeded;
-        }
-        public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
-        {
-            return true;
-        }
-    }
-}";
         }
         #endregion
     }

@@ -1,14 +1,14 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using ricaun.Revit.UI;
-using ricaun.Revit.Github;
-using System;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Linq;
-using RevitAddin.CommandLoader.Extensions;
-using System.ComponentModel;
 using Revit.Async;
+using RevitAddin.CommandLoader.Extensions;
+using ricaun.Revit.Github;
+using ricaun.Revit.UI;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace RevitAddin.CommandLoader.Revit
 {

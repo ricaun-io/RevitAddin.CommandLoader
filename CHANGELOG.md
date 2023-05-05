@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] / 2023-05-05
+### Features
+- Support C# version 7.3 in Revit 2021+ with `DotNetCompilerPlatform`.
+
 ## [1.0.4] / 2023-02-03
 ### Updated
 - Update example `Command` to `Revit Version`
@@ -30,6 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [x] AutoUpdater
 
 [vNext]: ../../compare/1.0.0...HEAD
+[1.0.5]: ../../compare/1.0.4...1.0.5
 [1.0.4]: ../../compare/1.0.3...1.0.4
 [1.0.3]: ../../compare/1.0.2...1.0.3
 [1.0.2]: ../../compare/1.0.1...1.0.2
