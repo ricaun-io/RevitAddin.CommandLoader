@@ -1,5 +1,4 @@
-﻿using Microsoft.CSharp;
-using System;
+﻿using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -11,6 +10,8 @@ namespace RevitAddin.CommandLoader.Services
 {
     public class CodeDomService
     {
+        public bool UseLegacyCodeDom { get; set; }
+
         public Assembly GenerateCode(params string[] sources)
         {
             var compilationUnits = sources
@@ -22,7 +23,7 @@ namespace RevitAddin.CommandLoader.Services
 
         public Assembly GenerateCode(params CodeCompileUnit[] compilationUnits)
         {
-            CodeDomProvider provider = CodeProviderService.GetCSharpCodeProvider();
+            CodeDomProvider provider = CodeProviderService.GetCSharpCodeProvider(UseLegacyCodeDom);
             CompilerParameters compilerParametes = new CompilerParameters();
 
             compilerParametes.GenerateExecutable = false;

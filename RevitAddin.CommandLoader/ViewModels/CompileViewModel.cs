@@ -1,4 +1,5 @@
-﻿using Revit.Async;
+﻿using Newtonsoft.Json.Bson;
+using Revit.Async;
 using RevitAddin.CommandLoader.Extensions;
 using RevitAddin.CommandLoader.Revit;
 using RevitAddin.CommandLoader.Services;
@@ -42,6 +43,7 @@ namespace RevitAddin.CommandLoader.ViewModels
                 Window.DataContext = this;
                 Window.SetAutodeskOwner();
                 Window.Closed += (s, e) => { Window = null; };
+                InitializeCompile();
             }
             Window?.Show();
             Window?.Activate();
@@ -52,13 +54,25 @@ namespace RevitAddin.CommandLoader.ViewModels
         private async Task CompileText()
         {
             EnableText = false;
+
+            var sources = new[] { Text };
+
+            if (GistGithubUtils.TryGetGistString(Text, out string gistOutput))
+            {
+                sources = new[] { gistOutput };
+            }
+            if (GistGithubUtils.TryGetGistFilesContent(Text, out string[] gistContents))
+            {
+                sources = gistContents;
+            }
+
             try
             {
                 await RevitTask.RunAsync(() =>
                 {
                     try
                     {
-                        var assembly = new CodeDomService().GenerateCode(Text);
+                        var assembly = new CodeDomService().GenerateCode(sources);
                         App.CreateCommands(assembly);
                     }
                     catch (System.Exception ex)
@@ -71,6 +85,14 @@ namespace RevitAddin.CommandLoader.ViewModels
             {
                 EnableText = true;
             }
+        }
+
+        private void InitializeCompile()
+        {
+            Task.Run(() =>
+            {
+                new CodeDomService().GenerateCode(CodeSamples.Command);
+            });
         }
         #endregion
     }

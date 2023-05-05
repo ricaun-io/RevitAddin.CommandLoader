@@ -7,13 +7,15 @@ namespace RevitAddin.CommandLoader.Services
 {
     public class CodeProviderService
     {
-        public static CodeDomProvider GetCSharpCodeProvider()
+        public static CodeDomProvider GetCSharpCodeProvider(bool useLegacyCodeDom = false)
         {
 #if NET48_OR_GREATER
-            return NewCSharpCodeProvider();
-#else
-            return new CSharpCodeProvider();
+            if (!useLegacyCodeDom)
+            {
+                return NewCSharpCodeProvider();
+            }
 #endif
+            return new CSharpCodeProvider();
         }
 
 #if NET48_OR_GREATER
