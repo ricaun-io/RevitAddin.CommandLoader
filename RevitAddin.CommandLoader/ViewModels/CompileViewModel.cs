@@ -19,7 +19,12 @@ namespace RevitAddin.CommandLoader.ViewModels
         #endregion
 
         #region Public Properties
-        public string Text { get; set; } = CodeSamples.Command;
+        public string Text { get; set; } =
+#if DEBUG
+            CodeSamples.CommandVersionGist;
+#else
+            CodeSamples.Command;
+#endif
         public bool EnableText { get; set; } = true;
         public IAsyncRelayCommand Command => new AsyncRelayCommand(CompileText);
         #endregion
@@ -68,11 +73,17 @@ namespace RevitAddin.CommandLoader.ViewModels
 
             try
             {
-                await RevitTask.RunAsync(() =>
+                await RevitTask.RunAsync((uiapp) =>
                 {
+                    var version = uiapp.Application.VersionNumber;
                     try
                     {
-                        var assembly = new CodeDomService().GenerateCode(sources);
+                        var assembly = new CodeDomService()
+#if DEBUG
+                            .SetDefines("DEBUG")
+#endif
+                            .SetDefines($"REVIT{version}", $"Revit{version}")
+                            .GenerateCode(sources);
                         App.CreateCommands(assembly);
                     }
                     catch (System.Exception ex)

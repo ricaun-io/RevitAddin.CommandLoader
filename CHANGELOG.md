@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Features
 - Support C# version 7.3 in Revit 2021+ with `DotNetCompilerPlatform`.
 - Gist Download Files and compile.
+- Support `CodeDomService` with Defines - `Revit20$$` and `REVIT20$$`.
 
 ## [1.0.4] / 2023-02-03
 ### Updated

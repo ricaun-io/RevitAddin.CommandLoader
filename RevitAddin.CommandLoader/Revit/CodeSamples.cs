@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Net.NetworkInformation;
+using System.Security.Policy;
 
 namespace RevitAddin.CommandLoader.Revit
 {
     public class CodeSamples
     {
+        public static string CommandVersionGist => "https://gist.github.com/ricaun/200a576c3baa45cba034ceedac1e708e";
         public static string Command =>
 @"using System;
 using System.ComponentModel;

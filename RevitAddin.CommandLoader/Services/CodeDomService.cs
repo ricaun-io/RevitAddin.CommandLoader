@@ -11,7 +11,12 @@ namespace RevitAddin.CommandLoader.Services
     public class CodeDomService
     {
         public bool UseLegacyCodeDom { get; set; }
-
+        public string CompilerOptions { get; set; }
+        public CodeDomService SetDefines(params string[] defines)
+        {
+            CompilerOptions += $" /define:{string.Join(";", defines).Replace(" ", "")}";
+            return this;
+        }
         public Assembly GenerateCode(params string[] sources)
         {
             var compilationUnits = sources
@@ -29,6 +34,8 @@ namespace RevitAddin.CommandLoader.Services
             compilerParametes.GenerateExecutable = false;
             compilerParametes.IncludeDebugInformation = false;
             compilerParametes.GenerateInMemory = false;
+
+            compilerParametes.CompilerOptions = CompilerOptions;
 
             #region Add GetReferencedAssemblies
             var assemblyNames = Assembly.GetExecutingAssembly().GetReferencedAssemblies();
