@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Gist Download Files and compile.
 - Support `CodeDomService` with Defines - `Revit20$$` and `REVIT20$$`.
 ### Updated
-- Update `InfoCenterUtils` to show download.
+- Update `InfoCenterUtils` to show download update.
 
 ## [1.0.4] / 2023-02-03
 ### Updated
