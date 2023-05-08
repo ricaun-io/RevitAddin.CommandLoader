@@ -25,6 +25,7 @@ namespace RevitAddin.CommandLoader.ViewModels
 #else
             CodeSamples.Command;
 #endif
+        public bool UseLegacyCodeDom { get; set; } = false;
         public bool EnableText { get; set; } = true;
         public IAsyncRelayCommand Command => new AsyncRelayCommand(CompileText);
         #endregion
@@ -78,12 +79,18 @@ namespace RevitAddin.CommandLoader.ViewModels
                     var version = uiapp.Application.VersionNumber;
                     try
                     {
-                        var assembly = new CodeDomService()
+                        var codeDomService = new CodeDomService()
+                        {
+                            UseLegacyCodeDom = UseLegacyCodeDom
+                        };
+
+                        var assembly = codeDomService
 #if DEBUG
-                            .SetDefines("DEBUG")
+                             .SetDefines("DEBUG")
 #endif
-                            .SetDefines($"REVIT{version}", $"Revit{version}")
-                            .GenerateCode(sources);
+                             .SetDefines($"REVIT{version}", $"Revit{version}")
+                             .GenerateCode(sources);
+
                         App.CreateCommands(assembly);
                     }
                     catch (System.Exception ex)

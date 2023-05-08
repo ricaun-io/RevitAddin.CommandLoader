@@ -29,7 +29,7 @@ namespace RevitAddin.CommandLoader.Revit
                 .SetLargeImage(Properties.Resources.CommandLoader.GetBitmapSource())
                 .SetToolTip("Open CommandLoader window that compiles Revit code and creates pushbuttons for each `IExternalCommand`, `IExternalCommandAvailability` could be used in the same class to enable the availability features.")
                 .SetLongDescription(AppName.GetInfo())
-                .SetContextualHelp("https://github.com/ricaun-io/RevitAddin.CommandLoader");
+                .SetContextualHelp(AppName.GetUri());
 
             service = new GithubRequestService("ricaun-io", "RevitAddin.CommandLoader");
 
@@ -57,6 +57,7 @@ namespace RevitAddin.CommandLoader.Revit
                 bool downloadedNewVersion = await service.Initialize();
                 if (downloadedNewVersion)
                 {
+                    InfoCenterUtils.ShowBalloon("Download New Release!", null, AppName.GetUri());
                     Console.WriteLine($"RevitAddin.CommandLoader: {downloadedNewVersion}");
                 }
             });
