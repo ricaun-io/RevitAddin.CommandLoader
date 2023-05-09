@@ -1,4 +1,5 @@
-﻿using Revit.Async;
+﻿using Newtonsoft.Json.Bson;
+using Revit.Async;
 using RevitAddin.CommandLoader.Extensions;
 using RevitAddin.CommandLoader.Revit;
 using RevitAddin.CommandLoader.Services;
@@ -18,7 +19,13 @@ namespace RevitAddin.CommandLoader.ViewModels
         #endregion
 
         #region Public Properties
-        public string Text { get; set; } = GetText();
+        public string Text { get; set; } =
+#if DEBUG
+            CodeSamples.CommandVersionGist;
+#else
+            CodeSamples.Command;
+#endif
+        public bool UseLegacyCodeDom { get; set; } = false;
         public bool EnableText { get; set; } = true;
         public IAsyncRelayCommand Command => new AsyncRelayCommand(CompileText);
         #endregion
@@ -42,6 +49,7 @@ namespace RevitAddin.CommandLoader.ViewModels
                 Window.DataContext = this;
                 Window.SetAutodeskOwner();
                 Window.Closed += (s, e) => { Window = null; };
+                InitializeCompile();
             }
             Window?.Show();
             Window?.Activate();
@@ -52,13 +60,37 @@ namespace RevitAddin.CommandLoader.ViewModels
         private async Task CompileText()
         {
             EnableText = false;
+
+            var sources = new[] { Text };
+
+            if (GistGithubUtils.TryGetGistString(Text, out string gistOutput))
+            {
+                sources = new[] { gistOutput };
+            }
+            if (GistGithubUtils.TryGetGistFilesContent(Text, out string[] gistContents))
+            {
+                sources = gistContents;
+            }
+
             try
             {
-                await RevitTask.RunAsync(() =>
+                await RevitTask.RunAsync((uiapp) =>
                 {
+                    var version = uiapp.Application.VersionNumber;
                     try
                     {
-                        var assembly = new CodeDomService().GenerateCode(Text);
+                        var codeDomService = new CodeDomService()
+                        {
+                            UseLegacyCodeDom = UseLegacyCodeDom
+                        };
+
+                        var assembly = codeDomService
+#if DEBUG
+                             .SetDefines("DEBUG")
+#endif
+                             .SetDefines($"REVIT{version}", $"Revit{version}")
+                             .GenerateCode(sources);
+
                         App.CreateCommands(assembly);
                     }
                     catch (System.Exception ex)
@@ -73,34 +105,12 @@ namespace RevitAddin.CommandLoader.ViewModels
             }
         }
 
-        private static string GetText()
+        private void InitializeCompile()
         {
-            return @"using System;
-using System.ComponentModel;
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-
-namespace RevitAddin
-{
-    [DisplayName(""Revit\rVersion"")]
-    [Description(""Show a Window with the Revit VersionName."")]
-    [Designer(""/UIFrameworkRes;component/ribbon/images/revit.ico"")]
-    [Transaction(TransactionMode.Manual)]
-    public class Command : IExternalCommand, IExternalCommandAvailability
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
-        {
-            UIApplication uiapp = commandData.Application;
-            System.Windows.MessageBox.Show(uiapp.Application.VersionName);
-            return Result.Succeeded;
-        }
-        public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
-        {
-            return true;
-        }
-    }
-}";
+            Task.Run(() =>
+            {
+                new CodeDomService().GenerateCode(CodeSamples.Command);
+            });
         }
         #endregion
     }

@@ -1,8 +1,8 @@
-﻿using Microsoft.CSharp;
-using System;
+﻿using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -10,20 +10,32 @@ namespace RevitAddin.CommandLoader.Services
 {
     public class CodeDomService
     {
-        public Assembly GenerateCode(string source)
+        public bool UseLegacyCodeDom { get; set; }
+        public string CompilerOptions { get; set; }
+        public CodeDomService SetDefines(params string[] defines)
         {
-            var targetUnit = new CodeSnippetCompileUnit(source);
-            return GenerateCode(targetUnit);
+            CompilerOptions += $" /define:{string.Join(";", defines).Replace(" ", "")}";
+            return this;
+        }
+        public Assembly GenerateCode(params string[] sources)
+        {
+            var compilationUnits = sources
+                .Select(s => new CodeSnippetCompileUnit(s))
+                .ToArray();
+
+            return GenerateCode(compilationUnits);
         }
 
         public Assembly GenerateCode(params CodeCompileUnit[] compilationUnits)
         {
-            CodeDomProvider provider = new CSharpCodeProvider();
+            CodeDomProvider provider = CodeProviderService.GetCSharpCodeProvider(UseLegacyCodeDom);
             CompilerParameters compilerParametes = new CompilerParameters();
 
             compilerParametes.GenerateExecutable = false;
             compilerParametes.IncludeDebugInformation = false;
             compilerParametes.GenerateInMemory = false;
+
+            compilerParametes.CompilerOptions = CompilerOptions;
 
             #region Add GetReferencedAssemblies
             var assemblyNames = Assembly.GetExecutingAssembly().GetReferencedAssemblies();

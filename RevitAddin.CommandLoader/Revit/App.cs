@@ -1,14 +1,14 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using ricaun.Revit.UI;
-using ricaun.Revit.Github;
-using System;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Linq;
-using RevitAddin.CommandLoader.Extensions;
-using System.ComponentModel;
 using Revit.Async;
+using RevitAddin.CommandLoader.Extensions;
+using ricaun.Revit.Github;
+using ricaun.Revit.UI;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace RevitAddin.CommandLoader.Revit
 {
@@ -29,7 +29,7 @@ namespace RevitAddin.CommandLoader.Revit
                 .SetLargeImage(Properties.Resources.CommandLoader.GetBitmapSource())
                 .SetToolTip("Open CommandLoader window that compiles Revit code and creates pushbuttons for each `IExternalCommand`, `IExternalCommandAvailability` could be used in the same class to enable the availability features.")
                 .SetLongDescription(AppName.GetInfo())
-                .SetContextualHelp("https://github.com/ricaun-io/RevitAddin.CommandLoader");
+                .SetContextualHelp(AppName.GetUri());
 
             service = new GithubRequestService("ricaun-io", "RevitAddin.CommandLoader");
 
@@ -57,6 +57,7 @@ namespace RevitAddin.CommandLoader.Revit
                 bool downloadedNewVersion = await service.Initialize();
                 if (downloadedNewVersion)
                 {
+                    InfoCenterUtils.ShowBalloon("Download New Release!", null, AppName.GetUri());
                     Console.WriteLine($"RevitAddin.CommandLoader: {downloadedNewVersion}");
                 }
             });

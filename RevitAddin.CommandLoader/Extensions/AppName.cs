@@ -21,5 +21,10 @@ namespace RevitAddin.CommandLoader.Extensions
 
             return result;
         }
+
+        public static string GetUri()
+        {
+            return "https://github.com/ricaun-io/RevitAddin.CommandLoader";
+        }
     }
 }

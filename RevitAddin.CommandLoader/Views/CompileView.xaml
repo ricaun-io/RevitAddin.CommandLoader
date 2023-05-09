@@ -23,6 +23,8 @@
                  VerticalScrollBarVisibility="Visible"></TextBox>
         <Grid Margin="4"/>
         <Button Height="24"
-                Command="{Binding Command}">Compile Code</Button>
+                Command="{Binding Command}"
+                Content="Compile Code">
+        </Button>
     </StackPanel>
 </Window>
