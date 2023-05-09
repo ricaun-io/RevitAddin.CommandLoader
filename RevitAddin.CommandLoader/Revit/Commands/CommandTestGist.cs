@@ -2,27 +2,27 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using RevitAddin.CommandLoader.Services;
+using System;
 using System.ComponentModel;
-using System.IO;
-using System.Reflection;
 
 namespace RevitAddin.CommandLoader.Revit.Commands
 {
-    [DisplayName("Command Test - Compile and Ribbon")]
+    [DisplayName("Command Test - Compile Gist")]
     [Transaction(TransactionMode.Manual)]
-    public class CommandTest : IExternalCommand, IExternalCommandAvailability
+    public class CommandTestGist : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
         {
             UIApplication uiapp = commandData.Application;
 
+            var gistUrl = "https://gist.github.com/ricaun/4f62b8650d29f1ff837e7e77f9e8b552";
+
+            GistGithubUtils.TryGetGistString(gistUrl, out string gistContent);
+
             try
             {
-                CodeDomService codeDomService = new CodeDomService();
-                var assembly = codeDomService.GenerateCode(
-                    CodeSamples.CommandVersion,
-                    CodeSamples.CommandTask,
-                    CodeSamples.CommandDeleteWalls);
+                CodeDomService codeDomService = new CodeDomService() { UseLegacyCodeDom = true };
+                var assembly = codeDomService.GenerateCode(gistContent);
 
                 App.CreateCommands(assembly);
             }
@@ -32,11 +32,6 @@ namespace RevitAddin.CommandLoader.Revit.Commands
             }
 
             return Result.Succeeded;
-        }
-
-        public bool IsCommandAvailable(UIApplication applicationData, CategorySet selectedCategories)
-        {
-            return true;
         }
     }
 }
