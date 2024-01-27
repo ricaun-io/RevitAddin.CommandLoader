@@ -1,9 +1,10 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Revit.Async;
 using RevitAddin.CommandLoader.Extensions;
 using ricaun.Revit.Github;
 using ricaun.Revit.UI;
+using ricaun.Revit.UI.Drawing;
+using ricaun.Revit.UI.Tasks;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -19,9 +20,14 @@ namespace RevitAddin.CommandLoader.Revit
         private static RibbonPanel ribbonPanel;
         private static RibbonPanel ribbonPanelAssembly;
         private static UIControlledApplication UIControlledApplication;
+
+        private static RevitTaskService revitTaskService;
+        public static IRevitTask RevitTask { get; private set; }
         public Result OnStartup(UIControlledApplication application)
         {
-            RevitTask.Initialize(application);
+            revitTaskService = new RevitTaskService(application);
+            revitTaskService.Initialize();
+            RevitTask = new RevitTask(revitTaskService);
 
             UIControlledApplication = application;
             ribbonPanel = application.CreatePanel("CommandLoader");
@@ -43,6 +49,8 @@ namespace RevitAddin.CommandLoader.Revit
         }
         public Result OnShutdown(UIControlledApplication application)
         {
+            revitTaskService?.Dispose();
+
             ribbonPanel?.Remove();
             ribbonPanelAssembly?.Remove();
 

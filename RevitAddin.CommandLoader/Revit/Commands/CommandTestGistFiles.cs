@@ -20,7 +20,8 @@ namespace RevitAddin.CommandLoader.Revit.Commands
 
             try
             {
-                CodeDomService codeDomService = new CodeDomService();
+                System.Console.WriteLine(gistFilesContent.Length);
+                var codeDomService = CodeDomFactory.Instance;
                 var assembly = codeDomService.GenerateCode(gistFilesContent);
 
                 App.CreateCommands(assembly);

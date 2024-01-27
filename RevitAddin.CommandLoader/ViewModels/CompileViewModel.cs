@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json.Bson;
-using Revit.Async;
-using RevitAddin.CommandLoader.Extensions;
+﻿using RevitAddin.CommandLoader.Extensions;
 using RevitAddin.CommandLoader.Revit;
 using RevitAddin.CommandLoader.Services;
 using RevitAddin.CommandLoader.Views;
 using ricaun.Revit.Mvvm;
 using ricaun.Revit.UI;
+using ricaun.Revit.UI.Drawing;
+using ricaun.Revit.UI.Tasks;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,7 +25,6 @@ namespace RevitAddin.CommandLoader.ViewModels
 #else
             CodeSamples.Command;
 #endif
-        public bool UseLegacyCodeDom { get; set; } = false;
         public bool EnableText { get; set; } = true;
         public IAsyncRelayCommand Command => new AsyncRelayCommand(CompileText);
         #endregion
@@ -74,21 +73,27 @@ namespace RevitAddin.CommandLoader.ViewModels
 
             try
             {
-                await RevitTask.RunAsync((uiapp) =>
+                await App.RevitTask.Run((uiapp) =>
                 {
                     var version = uiapp.Application.VersionNumber;
                     try
                     {
-                        var codeDomService = new CodeDomService()
-                        {
-                            UseLegacyCodeDom = UseLegacyCodeDom
+                        var codeDomService = CodeDomFactory.Instance;
+
+                        var defines = new[] {
+                            $"REVIT{version}",
+                            $"Revit{version}",
+#if DEBUG
+                             "DEBUG",
+#endif
                         };
 
                         var assembly = codeDomService
-#if DEBUG
-                             .SetDefines("DEBUG")
-#endif
-                             .SetDefines($"REVIT{version}", $"Revit{version}")
+                             //#if DEBUG
+                             //                             .SetDefines("DEBUG")
+                             //#endif
+                             //                             .SetDefines($"REVIT{version}", $"Revit{version}")
+                             .SetDefines(defines)
                              .GenerateCode(sources);
 
                         App.CreateCommands(assembly);
@@ -109,7 +114,7 @@ namespace RevitAddin.CommandLoader.ViewModels
         {
             Task.Run(() =>
             {
-                new CodeDomService().GenerateCode(CodeSamples.Command);
+                CodeDomFactory.Instance.GenerateCode(CodeSamples.Command);
             });
         }
         #endregion

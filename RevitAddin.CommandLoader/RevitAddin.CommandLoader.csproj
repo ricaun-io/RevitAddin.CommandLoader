@@ -89,7 +89,7 @@
 
   <PropertyGroup>
     <PackageId>RevitAddin.CommandLoader</PackageId>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <ProjectGuid>{82070359-36DA-4441-A59D-9018B6A8B348}</ProjectGuid>
   </PropertyGroup>
 
@@ -122,8 +122,8 @@
   <ItemGroup>
     <PackageReference Include="ricaun.Revit.UI" Version="*" />
     <PackageReference Include="ricaun.Revit.Mvvm" Version="*" />
-    <PackageReference Include="ricaun.Revit.Github" Version="*" />
-    <PackageReference Include="Revit.Async" Version="*" />
+    <PackageReference Include="ricaun.Revit.Github" Version="*-*" />
+    <PackageReference Include="ricaun.Revit.UI.Tasks" Version="*-*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -144,7 +144,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.*" IncludeAssets="build; compile" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.*" IncludeAssets="build; compile" PrivateAssets="All">
+      <NoWarn>NU1903</NoWarn>
+    </PackageReference>
     <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*" IncludeAssets="build; compile" PrivateAssets="All" />
   </ItemGroup>
 
