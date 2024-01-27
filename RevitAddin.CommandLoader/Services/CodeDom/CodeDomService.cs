@@ -2,24 +2,29 @@
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace RevitAddin.CommandLoader.Services
+namespace RevitAddin.CommandLoader.Services.CodeDom
 {
-    public class CodeDomService
+    public class CodeDomService : ICodeDomService
     {
-        public bool UseLegacyCodeDom { get; set; }
-        public string CompilerOptions { get; set; }
-        public CodeDomService SetDefines(params string[] defines)
+        private CodeDomProvider provider;
+
+        public CodeDomService(CodeDomProvider provider)
         {
-            CompilerOptions += $" /define:{string.Join(";", defines).Replace(" ", "")}";
+            this.provider = provider;
+        }
+        private string CompilerOptions { get; set; }
+        public ICodeDomService SetDefines(params string[] defines)
+        {
+            CompilerOptions = $" /define:{string.Join(";", defines).Replace(" ", "")}";
             return this;
         }
-        public Assembly GenerateCode(params string[] sources)
+
+        public Assembly GenerateCode(params string[] sourceCode)
         {
-            var compilationUnits = sources
+            var compilationUnits = sourceCode
                 .Select(s => new CodeSnippetCompileUnit(s))
                 .ToArray();
 
@@ -28,7 +33,6 @@ namespace RevitAddin.CommandLoader.Services
 
         public Assembly GenerateCode(params CodeCompileUnit[] compilationUnits)
         {
-            CodeDomProvider provider = CodeProviderService.GetCSharpCodeProvider(UseLegacyCodeDom);
             CompilerParameters compilerParametes = new CompilerParameters();
 
             compilerParametes.GenerateExecutable = false;
@@ -51,6 +55,7 @@ namespace RevitAddin.CommandLoader.Services
             {
                 compilerParametes.ReferencedAssemblies.Add(keyAssembly.Value.Location);
             }
+
             #endregion
 
             CompilerResults results = provider.CompileAssemblyFromDom(compilerParametes, compilationUnits);

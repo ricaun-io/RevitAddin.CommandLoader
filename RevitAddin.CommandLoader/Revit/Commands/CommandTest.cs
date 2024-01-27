@@ -18,7 +18,7 @@ namespace RevitAddin.CommandLoader.Revit.Commands
 
             try
             {
-                CodeDomService codeDomService = new CodeDomService();
+                var codeDomService = CodeDomFactory.Instance;
                 var assembly = codeDomService.GenerateCode(
                     CodeSamples.CommandVersion,
                     CodeSamples.CommandTask,

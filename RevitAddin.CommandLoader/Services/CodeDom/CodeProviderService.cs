@@ -3,7 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 
-namespace RevitAddin.CommandLoader.Services
+namespace RevitAddin.CommandLoader.Services.CodeDom
 {
     public class CodeProviderService
     {

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.6] / 2024-01-27
 ### Features
 - Using `ricaun.Revit.UI.Tasks`
+### Updated
+- Add `ICodeDomService` interface
+- Add `CodeDomFactory` class
 ### Remove
 - Remove `Revit.Async`
 

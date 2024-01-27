@@ -21,7 +21,7 @@ namespace RevitAddin.CommandLoader.Revit.Commands
 
             try
             {
-                CodeDomService codeDomService = new CodeDomService() { UseLegacyCodeDom = true };
+                var codeDomService = CodeDomFactory.Instance;
                 var assembly = codeDomService.GenerateCode(gistContent);
 
                 App.CreateCommands(assembly);
