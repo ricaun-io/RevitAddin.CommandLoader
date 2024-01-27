@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json.Bson;
-using Revit.Async;
-using RevitAddin.CommandLoader.Extensions;
+﻿using RevitAddin.CommandLoader.Extensions;
 using RevitAddin.CommandLoader.Revit;
 using RevitAddin.CommandLoader.Services;
 using RevitAddin.CommandLoader.Views;
 using ricaun.Revit.Mvvm;
 using ricaun.Revit.UI;
 using ricaun.Revit.UI.Drawing;
+using ricaun.Revit.UI.Tasks;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -75,7 +74,7 @@ namespace RevitAddin.CommandLoader.ViewModels
 
             try
             {
-                await RevitTask.RunAsync((uiapp) =>
+                await App.RevitTask.Run((uiapp) =>
                 {
                     var version = uiapp.Application.VersionNumber;
                     try

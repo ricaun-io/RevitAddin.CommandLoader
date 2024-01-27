@@ -122,8 +122,8 @@
   <ItemGroup>
     <PackageReference Include="ricaun.Revit.UI" Version="*" />
     <PackageReference Include="ricaun.Revit.Mvvm" Version="*" />
-    <PackageReference Include="ricaun.Revit.Github" Version="*" />
-    <PackageReference Include="Revit.Async" Version="*" />
+    <PackageReference Include="ricaun.Revit.Github" Version="*-*" />
+    <PackageReference Include="ricaun.Revit.UI.Tasks" Version="*-*" />
   </ItemGroup>
 
   <ItemGroup>

@@ -72,7 +72,7 @@ namespace RevitAddin
 * [ricaun.Revit.UI](https://github.com/ricaun-io/ricaun.Revit.UI)
 * [ricaun.Revit.Mvvm](https://github.com/ricaun-io/ricaun.Revit.Mvvm)
 * [ricaun.Revit.Github](https://github.com/ricaun-io/ricaun.Revit.Github)
-* [Revit.Async](https://github.com/KennanChan/Revit.Async)
+* [ricaun.Revit.UI.Tasks](https://github.com/ricaun-io/ricaun.Revit.UI.Tasks)
 
 ## Installation
 
