@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{E6
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAddin.CommandLoader.Tests", "RevitAddin.CommandLoader.Tests\RevitAddin.CommandLoader.Tests.csproj", "{42C706AF-0255-4E98-A5A0-C043FA7B0496}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		2017|Any CPU = 2017|Any CPU
@@ -34,6 +36,14 @@ Global
 		{34853418-411C-4B27-82AF-DDE5309AEE10}.2021|Any CPU.ActiveCfg = Release|Any CPU
 		{34853418-411C-4B27-82AF-DDE5309AEE10}.Debug 2017|Any CPU.ActiveCfg = Debug|Any CPU
 		{34853418-411C-4B27-82AF-DDE5309AEE10}.Debug 2021|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.2017|Any CPU.ActiveCfg = 2017|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.2017|Any CPU.Build.0 = 2017|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.2021|Any CPU.ActiveCfg = 2021|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.2021|Any CPU.Build.0 = 2021|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.Debug 2017|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.Debug 2017|Any CPU.Build.0 = Debug|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.Debug 2021|Any CPU.ActiveCfg = Debug 2021|Any CPU
+		{42C706AF-0255-4E98-A5A0-C043FA7B0496}.Debug 2021|Any CPU.Build.0 = Debug 2021|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
