@@ -58,6 +58,11 @@
     </Otherwise>
   </Choose>
 
+  <!-- DefineConstants -->
+  <PropertyGroup>
+    <DefineConstants>REVIT$(RevitVersion)</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />

@@ -1,9 +1,10 @@
 ﻿using NUnit.Framework;
 using RevitAddin.CommandLoader.Services;
 using RevitAddin.CommandLoader.Services.CodeDom;
+using RevitAddin.CommandLoader.Tests.CodeDom;
 using System;
 
-namespace RevitAddin.CommandLoader.Tests.CodeDom
+namespace RevitAddin.CommandLoader.Tests
 {
     public class CodeDomTests
     {
