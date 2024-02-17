@@ -8,9 +8,12 @@ namespace RevitAddin.CommandLoader.Services
 
         private static ICodeDomService CreateCodeDomService()
         {
+#if NET8_0_OR_GREATER
+            return new CodeAnalysisCodeDomService();
+#else
             var provider = CodeProviderService.GetCSharpCodeProvider();
-
             return new CodeDomService(provider);
+#endif
         }
 
     }

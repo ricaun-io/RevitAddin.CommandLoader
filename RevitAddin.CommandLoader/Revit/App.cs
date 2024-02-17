@@ -22,12 +22,11 @@ namespace RevitAddin.CommandLoader.Revit
         private static UIControlledApplication UIControlledApplication;
 
         private static RevitTaskService revitTaskService;
-        public static IRevitTask RevitTask { get; private set; }
+        public static IRevitTask RevitTask => revitTaskService;
         public Result OnStartup(UIControlledApplication application)
         {
             revitTaskService = new RevitTaskService(application);
             revitTaskService.Initialize();
-            RevitTask = new RevitTask(revitTaskService);
 
             UIControlledApplication = application;
             ribbonPanel = application.CreatePanel("CommandLoader");

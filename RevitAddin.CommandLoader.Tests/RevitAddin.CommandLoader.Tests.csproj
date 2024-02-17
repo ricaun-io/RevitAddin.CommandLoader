@@ -3,7 +3,7 @@
   <PropertyGroup>
     <IsPackable>false</IsPackable>
     <LangVersion>Latest</LangVersion>
-    <Configurations>Debug 2017;2017;Debug 2021;2021</Configurations>
+    <Configurations>Debug 2017;2017;Debug 2021;2021;2025</Configurations>
   </PropertyGroup>
 
   <!-- RevitVersion -->
@@ -44,10 +44,16 @@
         <TargetFramework>net48</TargetFramework>
       </PropertyGroup>
     </When>
-    <When Condition="$(Configuration.Contains('2023'))">
+    <When Condition="$(Configuration.Contains('2024'))">
       <PropertyGroup>
-        <RevitVersion>2023</RevitVersion>
+        <RevitVersion>2024</RevitVersion>
         <TargetFramework>net48</TargetFramework>
+      </PropertyGroup>
+    </When>
+    <When Condition="$(Configuration.Contains('2025'))">
+      <PropertyGroup>
+        <RevitVersion>2025</RevitVersion>
+        <TargetFramework>net8.0-windows</TargetFramework>
       </PropertyGroup>
     </When>
     <Otherwise>
@@ -63,6 +69,13 @@
     <DefineConstants>REVIT$(RevitVersion)</DefineConstants>
   </PropertyGroup>
 
+  <!-- Net Core -->
+  <PropertyGroup Condition="!$(TargetFramework.StartsWith('net4'))">
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
@@ -75,6 +88,12 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.*">
+      <NoWarn>NU1903</NoWarn>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

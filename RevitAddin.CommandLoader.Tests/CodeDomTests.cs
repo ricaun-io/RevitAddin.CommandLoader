@@ -20,6 +20,9 @@ namespace RevitAddin.CommandLoader.Tests
 
             Assert.IsTrue(CodeTester.HasMethodTest(assembly), "Test method not found.");
             Assert.IsTrue(CodeTester.HasMethodDebug(assembly), "Debug method not found.");
+
+            Assert.IsTrue(CodeTester.HasMethodTest2(assembly), "Test method not found in the Tests2 class.");
+            Assert.IsTrue(CodeTester.HasMethodDebug2(assembly), "Debug method not found in the Tests2 class.");
         }
 
         [Test]
