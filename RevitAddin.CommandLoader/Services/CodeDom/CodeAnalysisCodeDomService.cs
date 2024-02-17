@@ -22,11 +22,6 @@ namespace RevitAddin.CommandLoader.Services.CodeDom
 
         public Assembly GenerateCode(params string[] sourceCode)
         {
-            return GenerateCode(sourceCode.FirstOrDefault());
-        }
-
-        public Assembly GenerateCode(string sourceCode)
-        {
             var compilation = CompilationCode(sourceCode, PreprocessorSymbols);
 
             var filePath = Path.Combine(Path.GetTempPath(), compilation.Assembly.Name + ".dll");
@@ -38,14 +33,15 @@ namespace RevitAddin.CommandLoader.Services.CodeDom
             return Assembly.LoadFrom(filePath);
         }
 
-        private CSharpCompilation CompilationCode(string sourceCode, string[] preprocessorSymbols = null)
+        private CSharpCompilation CompilationCode(string[] sourceCodes, string[] preprocessorSymbols = null)
         {
-            var codeString = SourceText.From(sourceCode);
             var options = CSharpParseOptions.Default
                 .WithLanguageVersion(LanguageVersion.Latest)
                 .WithPreprocessorSymbols(preprocessorSymbols);
 
-            var parsedSyntaxTree = SyntaxFactory.ParseSyntaxTree(codeString, options);
+            var parsedSyntaxTrees = sourceCodes
+                .Select(sourceCode => SyntaxFactory.ParseSyntaxTree(sourceCode, options))
+                .ToArray();
 
             var references = new List<MetadataReference>
             {
@@ -70,7 +66,7 @@ namespace RevitAddin.CommandLoader.Services.CodeDom
             #endregion
 
             return CSharpCompilation.Create(Guid.NewGuid().ToString(),
-                new[] { parsedSyntaxTree },
+                parsedSyntaxTrees,
                 references: references,
                 options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary,
                     optimizationLevel: OptimizationLevel.Release,

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support net core plugin.
 ### Added
 - Add `CodeAnalysisCodeDom` to support net code.
+- Update `CodeAnalysisCodeDomService` to work with multiple source code.
 ### Tests
 - Test `GistGithubUtils` download string.
 - Add `Newtonsoft.Json` to support `GistGithubUtils` download string.
