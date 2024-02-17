@@ -6,6 +6,12 @@ namespace RevitAddin.CommandLoader.Services
 {
     public class GistGithubUtils
     {
+        /// <summary>
+        /// Try to download the content of a gist from a given url.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="output"></param>
+        /// <returns></returns>
         public static bool TryGetGistString(string url, out string output)
         {
             output = "";
@@ -22,6 +28,12 @@ namespace RevitAddin.CommandLoader.Services
             return false;
         }
 
+        /// <summary>
+        /// Try to get Gist Id.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static bool TryGetGistId(string url, out string id)
         {
             id = "";
@@ -34,6 +46,12 @@ namespace RevitAddin.CommandLoader.Services
             return false;
         }
 
+        /// <summary>
+        /// Try to get the content of a gist from a given url.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="contents"></param>
+        /// <returns></returns>
         public static bool TryGetGistFilesContent(string url, out string[] contents)
         {
             contents = null;
@@ -62,7 +80,10 @@ namespace RevitAddin.CommandLoader.Services
                     var jsonService = new JsonService<GistModel>();
                     gistModel = jsonService.Deserialize(content);
                 }
-                catch { }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
 
                 return gistModel is not null;
             }

@@ -90,4 +90,10 @@
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" Version="4.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.*">
+      <NoWarn>NU1903</NoWarn>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
