@@ -80,9 +80,13 @@ namespace RevitAddin
 
 ## Video
 
-Videos in portuguese with the creation of this project.
+Videos in Portuguese with the creation of this project.
 
 [![VideoIma1]][Video1]
+
+Live videos in English about this project.
+
+[![VideoIma2]][Video2] [![VideoIma3]][Video3]
 
 ## License
 
@@ -94,3 +98,9 @@ Do you like this project? Please [star this project on GitHub](../../stargazers)
 
 [Video1]: https://youtu.be/4oVJWDRhrRs
 [VideoIma1]: https://img.youtube.com/vi/4oVJWDRhrRs/mqdefault.jpg
+
+[Video2]: https://youtu.be/hI21lxm4EVU
+[VideoIma2]: https://img.youtube.com/vi/hI21lxm4EVU/mqdefault.jpg
+[Video3]: https://youtu.be/cOu7vjZnyXc
+[VideoIma3]: https://img.youtube.com/vi/cOu7vjZnyXc/mqdefault.jpg
+
