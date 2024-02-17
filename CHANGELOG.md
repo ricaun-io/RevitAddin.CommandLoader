@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.1.0] / 2024-02-17
 ### Features
 - Support net core plugin.
+### Added
+- Add `CodeAnalysisCodeDom` to support net code.
 
 ## [1.0.6] / 2024-01-27
 ### Features
