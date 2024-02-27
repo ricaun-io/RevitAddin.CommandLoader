@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support icons in dark theme.
 ### Updated
 - Add `AutodeskIconGeneratorUtils`.
+- Window close with `Esc` key.
 
 ## [1.1.0] / 2024-02-17
 ### Features
