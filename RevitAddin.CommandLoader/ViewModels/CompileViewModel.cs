@@ -21,7 +21,7 @@ namespace RevitAddin.CommandLoader.ViewModels
         #region Public Properties
         public string Text { get; set; } =
 #if DEBUG
-            CodeSamples.CommandVersionGist;
+            CodeSamples.CommandThemeGist;
 #else
             CodeSamples.Command;
 #endif

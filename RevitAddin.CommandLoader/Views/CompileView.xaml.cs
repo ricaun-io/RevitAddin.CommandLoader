@@ -9,6 +9,7 @@ namespace RevitAddin.CommandLoader.Views
         {
             InitializeComponent();
             InitializeWindow();
+            this.KeyDown += (s, e) => { if (e.Key == System.Windows.Input.Key.Escape) { this.Close(); } };
         }
 
         #region InitializeWindow

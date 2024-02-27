@@ -82,6 +82,7 @@ Just copy the `gist` link in the `RevitAddin.CommandLoader` compiler and execute
 
 * [CommandVersion](https://gist.github.com/ricaun/200a576c3baa45cba034ceedac1e708e) - File with Revit defines.
 * [CommandCreate](https://gist.github.com/ricaun/4f62b8650d29f1ff837e7e77f9e8b552) - Multiple file each with a `IExternalCommand`.
+* [CommandTheme](https://gist.github.com/ricaun/86334ff6560e3e8c4671148c5c995b39) - Commands to change `UITheme`.
 
 ## Resources
 
@@ -100,9 +101,9 @@ Videos in Portuguese with the creation of this project.
 
 [![VideoIma1]][Video1]
 
-Live videos in English about this project.
+Videos in English about this project.
 
-[![VideoIma2]][Video2] [![VideoIma3]][Video3]
+[![VideoIma2]][Video2] [![VideoIma3]][Video3] [![VideoIma4]][Video4]
 
 ## License
 
@@ -119,4 +120,5 @@ Do you like this project? Please [star this project on GitHub](../../stargazers)
 [VideoIma2]: https://img.youtube.com/vi/hI21lxm4EVU/mqdefault.jpg
 [Video3]: https://youtu.be/cOu7vjZnyXc
 [VideoIma3]: https://img.youtube.com/vi/cOu7vjZnyXc/mqdefault.jpg
-
+[Video4]: https://youtu.be/y2GkFXoFwow
+[VideoIma4]: https://img.youtube.com/vi/y2GkFXoFwow/mqdefault.jpg
