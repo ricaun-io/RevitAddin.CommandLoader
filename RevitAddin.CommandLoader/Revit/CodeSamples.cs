@@ -6,6 +6,7 @@ namespace RevitAddin.CommandLoader.Revit
 {
     public class CodeSamples
     {
+        public static string CommandThemeGist => "https://gist.github.com/ricaun/86334ff6560e3e8c4671148c5c995b39";
         public static string CommandVersionGist => "https://gist.github.com/ricaun/200a576c3baa45cba034ceedac1e708e";
         public static string Command =>
 @"using System;

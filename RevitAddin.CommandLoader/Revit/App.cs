@@ -109,7 +109,7 @@ namespace RevitAddin.CommandLoader.Revit
 
                 if (needImage)
                 {
-                    button.SetLargeImage(ImageGeneratorUtils.GetLargeImageUri());
+                    button.SetLargeImage(AutodeskIconGeneratorUtils.GetCube());
                 }
             }
         }

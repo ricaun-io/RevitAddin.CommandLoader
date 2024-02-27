@@ -82,6 +82,7 @@ Just copy the `gist` link in the `RevitAddin.CommandLoader` compiler and execute
 
 * [CommandVersion](https://gist.github.com/ricaun/200a576c3baa45cba034ceedac1e708e) - File with Revit defines.
 * [CommandCreate](https://gist.github.com/ricaun/4f62b8650d29f1ff837e7e77f9e8b552) - Multiple file each with a `IExternalCommand`.
+* [CommandTheme](https://gist.github.com/ricaun/86334ff6560e3e8c4671148c5c995b39) - Commands to change `UITheme`.
 
 ## Resources
 
