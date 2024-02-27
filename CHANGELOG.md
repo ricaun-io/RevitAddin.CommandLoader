@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.1.1] / 2024-02-27
 ### Features
-- Support icons in dark theme.
+- Support [Autodesk.Icon](https://github.com/ricaun-io/Autodesk.Icon.Example) in dark theme.
 ### Updated
 - Add `AutodeskIconGeneratorUtils`.
 - Window close with `Esc` key.
