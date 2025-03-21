@@ -5,12 +5,12 @@ namespace RevitAddin.CommandLoader.Extensions
 {
     public static class AutodeskIconGeneratorUtils
     {
-        private static string[] icons = new[] { "Grey", "Red", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Brown" };
+        private static string[] icons = new[] { "Grey", "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Brown" };
         private static string[] types = new[] { "Box", "Cube" };
-        private static string[] themes = new[] { "", "Dark" };
+        private static string[] themes = new[] { "Light", "Dark" };
         private static char separetor = '-';
-        private static string extension = ".ico";
-        private static string url = "https://github.com/ricaun-io/Autodesk.Icon.Example/releases/download/1.0.0/";
+        private static string extension = ".tiff";
+        private static string url = "https://github.com/ricaun-io/Autodesk.Icon.Example/releases/download/2.0.0/";
 
         private static int icon = 0;
         public static bool IsDark => UIThemeManager.CurrentTheme == UITheme.Dark;
