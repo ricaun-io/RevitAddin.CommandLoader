@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace></RootNamespace>
     <NoWarn>CS0649;CS0169</NoWarn>
     <NukeRootDirectory>.</NukeRootDirectory>
     <NukeScriptDirectory>.</NukeScriptDirectory>
     <NukeTelemetryVersion>1</NukeTelemetryVersion>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +16,7 @@
 
   <ItemGroup>
     <None Include="..\.github\workflows\*.yml" LinkBase="ci" />
-    <None Include=".github\**\*"/>
-    <None Include=".nuke\*"/>
+    <None Include=".github\**\*" />
+    <None Include=".nuke\*" />
   </ItemGroup>
 </Project>

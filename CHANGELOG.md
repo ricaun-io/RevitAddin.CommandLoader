@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] / 2025-03-21
+### Features
+- Support `tiff` image files.
+### Updates
+- Using `ricaun.Revit.UI` to `0.8.0`.
+- Update `AutodeskIconGeneratorUtils` to use version `2.0.0` and `tiff` file.
+- Add `CommandLoader.tiff` as the default image icon.
+
 ## [1.1.1] / 2024-02-27
 ### Features
 - Support [Autodesk.Icon](https://github.com/ricaun-io/Autodesk.Icon.Example) in dark theme.
@@ -66,6 +74,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [x] AutoUpdater
 
 [vNext]: ../../compare/1.0.0...HEAD
+[1.2.0]: ../../compare/1.1.1...1.2.0
 [1.1.1]: ../../compare/1.1.0...1.1.1
 [1.1.0]: ../../compare/1.0.6...1.1.0
 [1.0.6]: ../../compare/1.0.5...1.0.6

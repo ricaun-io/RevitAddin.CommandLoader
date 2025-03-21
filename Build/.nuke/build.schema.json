@@ -1,67 +1,172 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$ref": "#/definitions/build",
-  "title": "Build Schema",
   "definitions": {
-    "build": {
+    "Host": {
+      "type": "string",
+      "enum": [
+        "AppVeyor",
+        "AzurePipelines",
+        "Bamboo",
+        "Bitbucket",
+        "Bitrise",
+        "GitHubActions",
+        "GitLab",
+        "Jenkins",
+        "Rider",
+        "SpaceAutomation",
+        "TeamCity",
+        "Terminal",
+        "TravisCI",
+        "VisualStudio",
+        "VSCode"
+      ]
+    },
+    "IssConfiguration": {
       "type": "object",
+      "description": "IssConfiguration",
       "properties": {
-        "ApplicationType": {
-          "type": "string"
+        "Title": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Title (default null)"
         },
+        "Image": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Image (default IMAGE)"
+        },
+        "ImageSmall": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Small Image (default IMAGESMALL)"
+        },
+        "Icon": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Icon (default ICON)"
+        },
+        "Licence": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Licence (default LICENSE)"
+        },
+        "Language": {
+          "description": "Language (default IssLanguage)",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/IssLanguage"
+            }
+          ]
+        },
+        "IssLanguageLicences": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "IssLanguages",
+          "items": {
+            "$ref": "#/definitions/IssLanguageLicence"
+          }
+        }
+      }
+    },
+    "IssLanguage": {
+      "type": "object",
+      "description": "IssLanguage",
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Name (default \"en\")"
+        },
+        "MessagesFile": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "MessagesFile (default \"compiler:Default.isl\")"
+        }
+      }
+    },
+    "IssLanguageLicence": {
+      "type": "object",
+      "description": "IssLanguageLicence",
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Name (default \"en\")"
+        },
+        "MessagesFile": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "MessagesFile (default \"compiler:Default.isl\")"
+        },
+        "Licence": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Licence (default LICENSE)"
+        }
+      }
+    },
+    "ExecutableTarget": {
+      "type": "string",
+      "enum": [
+        "Build",
+        "Clean",
+        "Compile",
+        "GitPreRelease",
+        "GitRelease",
+        "PackageBuilder",
+        "Release",
+        "Sign",
+        "Test"
+      ]
+    },
+    "Verbosity": {
+      "type": "string",
+      "description": "",
+      "enum": [
+        "Verbose",
+        "Normal",
+        "Minimal",
+        "Quiet"
+      ]
+    },
+    "NukeBuild": {
+      "properties": {
         "Continue": {
           "type": "boolean",
           "description": "Indicates to continue a previously failed build attempt"
-        },
-        "Folder": {
-          "type": "string"
-        },
-        "GitHubToken": {
-          "type": "string",
-          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
         },
         "Help": {
           "type": "boolean",
           "description": "Shows the help text for this build assembly"
         },
         "Host": {
-          "type": "string",
           "description": "Host for execution. Default is 'automatic'",
-          "enum": [
-            "AppVeyor",
-            "AzurePipelines",
-            "Bamboo",
-            "Bitbucket",
-            "Bitrise",
-            "GitHubActions",
-            "GitLab",
-            "Jenkins",
-            "Rider",
-            "SpaceAutomation",
-            "TeamCity",
-            "Terminal",
-            "TravisCI",
-            "VisualStudio",
-            "VSCode"
-          ]
-        },
-        "InstallationFiles": {
-          "type": "string"
-        },
-        "IssConfiguration": {
-          "type": "string"
-        },
-        "MainName": {
-          "type": "string"
-        },
-        "MiddleVersions": {
-          "type": "boolean"
-        },
-        "Name": {
-          "type": "string"
-        },
-        "NewVersions": {
-          "type": "boolean"
+          "$ref": "#/definitions/Host"
         },
         "NoLogo": {
           "type": "boolean",
@@ -78,6 +183,71 @@
         "Profile": {
           "type": "array",
           "description": "Defines the profiles to load",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Root": {
+          "type": "string",
+          "description": "Root directory during build execution"
+        },
+        "Skip": {
+          "type": "array",
+          "description": "List of targets to be skipped. Empty list skips all dependencies",
+          "items": {
+            "$ref": "#/definitions/ExecutableTarget"
+          }
+        },
+        "Target": {
+          "type": "array",
+          "description": "List of targets to be invoked. Default is '{default_target}'",
+          "items": {
+            "$ref": "#/definitions/ExecutableTarget"
+          }
+        },
+        "Verbosity": {
+          "description": "Logging verbosity during build execution. Default is 'Normal'",
+          "$ref": "#/definitions/Verbosity"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "properties": {
+        "ApplicationType": {
+          "type": "string"
+        },
+        "EnableForkedRepository": {
+          "type": "boolean"
+        },
+        "Folder": {
+          "type": "string"
+        },
+        "GitHubToken": {
+          "type": "string",
+          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
+        },
+        "InstallationFiles": {
+          "type": "string"
+        },
+        "IssConfiguration": {
+          "$ref": "#/definitions/IssConfiguration"
+        },
+        "MainName": {
+          "type": "string"
+        },
+        "MiddleVersions": {
+          "type": "boolean"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "NewVersions": {
+          "type": "boolean"
+        },
+        "PreReleaseFilter": {
+          "type": "array",
           "items": {
             "type": "string"
           }
@@ -103,10 +273,6 @@
         "ReleasePackageBuilder": {
           "type": "boolean"
         },
-        "Root": {
-          "type": "string",
-          "description": "Root directory during build execution"
-        },
         "SignFile": {
           "type": "string",
           "default": "Secrets must be entered via 'nuke :secrets [profile]'"
@@ -115,43 +281,9 @@
           "type": "string",
           "default": "Secrets must be entered via 'nuke :secrets [profile]'"
         },
-        "Skip": {
-          "type": "array",
-          "description": "List of targets to be skipped. Empty list skips all dependencies",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Build",
-              "Clean",
-              "Compile",
-              "GitRelease",
-              "PackageBuilder",
-              "Release",
-              "Sign",
-              "Test"
-            ]
-          }
-        },
         "Solution": {
           "type": "string",
           "description": "Path to a solution file that is automatically loaded"
-        },
-        "Target": {
-          "type": "array",
-          "description": "List of targets to be invoked. Default is '{default_target}'",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Build",
-              "Clean",
-              "Compile",
-              "GitRelease",
-              "PackageBuilder",
-              "Release",
-              "Sign",
-              "Test"
-            ]
-          }
         },
         "TestBuildStopWhenFailed": {
           "type": "boolean"
@@ -167,18 +299,11 @@
         },
         "VendorId": {
           "type": "string"
-        },
-        "Verbosity": {
-          "type": "string",
-          "description": "Logging verbosity during build execution. Default is 'Normal'",
-          "enum": [
-            "Minimal",
-            "Normal",
-            "Quiet",
-            "Verbose"
-          ]
         }
       }
+    },
+    {
+      "$ref": "#/definitions/NukeBuild"
     }
-  }
+  ]
 }
