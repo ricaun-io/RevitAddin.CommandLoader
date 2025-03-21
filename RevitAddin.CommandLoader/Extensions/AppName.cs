@@ -11,6 +11,11 @@ namespace RevitAddin.CommandLoader.Extensions
             return $"{assembly.GetName().Name} {assembly.GetName().Version.ToString(3)}";
         }
 
+        public static string GetIcon()
+        {
+            return "Resources/CommandLoader.tiff";
+        }
+
         public static string GetInfo()
         {
             var assembly = Assembly.GetExecutingAssembly();

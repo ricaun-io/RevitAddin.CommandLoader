@@ -38,7 +38,7 @@ namespace RevitAddin.CommandLoader.ViewModels
 
         #region View / Window
         public string Title { get; set; } = AppName.GetNameVersion();
-        public object Icon { get; set; } = Properties.Resources.CommandLoader.GetBitmapSource();
+        public object Icon { get; set; } = AppName.GetIcon().GetBitmapSource();
         public CompileView Window { get; private set; }
         public void Show()
         {

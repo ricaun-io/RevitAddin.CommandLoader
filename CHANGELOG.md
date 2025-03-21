@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.1.2] / 2025-03-21
 ### Features
-- Using `ricaun.Revit.UI` to `0.8.0`.
+- Support `tiff` image files.
 ### Updates
+- Using `ricaun.Revit.UI` to `0.8.0`.
 - Update `AutodeskIconGeneratorUtils` to use version `2.0.0` and `tiff` file.
+- Add `CommandLoader.tiff` as the default image icon.
 
 ## [1.1.1] / 2024-02-27
 ### Features

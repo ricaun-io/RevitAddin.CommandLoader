@@ -31,7 +31,7 @@ namespace RevitAddin.CommandLoader.Revit
             UIControlledApplication = application;
             ribbonPanel = application.CreatePanel("CommandLoader");
             ribbonPanel.CreatePushButton<Commands.Command>("Command\rLoader")
-                .SetLargeImage(Properties.Resources.CommandLoader.GetBitmapSource())
+                .SetLargeImage(AppName.GetIcon())
                 .SetToolTip("Open CommandLoader window that compiles Revit code and creates pushbuttons for each `IExternalCommand`, `IExternalCommandAvailability` could be used in the same class to enable the availability features.")
                 .SetLongDescription(AppName.GetInfo())
                 .SetContextualHelp(AppName.GetUri());
