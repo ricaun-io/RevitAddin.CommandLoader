@@ -137,13 +137,11 @@
     <None Remove="Resources\CommandLoader.tiff" />
   </ItemGroup>
 
-
-  
   <ItemGroup>
     <PackageReference Include="ricaun.Revit.UI" Version="*" />
     <PackageReference Include="ricaun.Revit.Mvvm" Version="*" />
-    <PackageReference Include="ricaun.Revit.Github" Version="*-*" />
-    <PackageReference Include="ricaun.Revit.UI.Tasks" Version="*-*" />
+    <PackageReference Include="ricaun.Revit.Github" Version="*" />
+    <PackageReference Include="ricaun.Revit.UI.Tasks" Version="*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -153,7 +151,7 @@
 
   <!-- Fody -->
   <ItemGroup>
-    <PackageReference Include="Isolator.Fody" Version="*-*" IncludeAssets="build; compile" PrivateAssets="all" />
+    <PackageReference Include="Isolator.Fody" Version="*" IncludeAssets="build; compile" PrivateAssets="all" Condition="!$(TargetFramework.StartsWith('net4'))" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.*" IncludeAssets="build; compile" PrivateAssets="all" />
   </ItemGroup>
   <PropertyGroup>
