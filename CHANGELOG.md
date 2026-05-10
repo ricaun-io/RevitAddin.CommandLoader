@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Enable `Isolator.Fody` to support constext isolation in `.NET Core`.
 ### Updated
 - Update `ricaun.Revit.UI` to `0.9.0`.
+- Update `AppName` to show `ContextNumber` in the `GetInfo` method.
 ### Build
 - Update `ricaun.Nuke.PackageBuilder` to version `1.12.0` to change installation folder to `AppData`.
 - Update `csproj` to `net10` target framework.
