@@ -93,7 +93,12 @@ Just copy the `gist` link in the `RevitAddin.CommandLoader` compiler and execute
 
 ## Installation
 
-* Download and install [RevitAddin.CommandLoader.exe](../../releases/latest/download/RevitAddin.CommandLoader.zip)
+Install bundle using the installer [RevitAddin.CommandLoader.exe](https://github.com/ricaun-io/RevitAddin.CommandLoader/releases/latest/download/RevitAddin.CommandLoader.zip) or using [AppBundleTool](https://github.com/ricaun-io/ricaun.AppBundleTool) with the following command: 
+```shell
+AppBundleTool -a https://github.com/ricaun-io/RevitAddin.CommandLoader/releases/latest/download/RevitAddin.CommandLoader.bundle.zip -i
+```
+
+The `RevitAddin.CommandLoader.bundle` is installed in the `%AppData%\Autodesk\ApplicationPlugins\RevitAddin.CommandLoader.bundle` folder.
 
 ## Video
 
