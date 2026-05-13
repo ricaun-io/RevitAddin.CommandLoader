@@ -151,14 +151,12 @@
 
   <!-- Fody -->
   <ItemGroup>
-    <PackageReference Include="Isolator.Fody" Version="*" IncludeAssets="build; compile" PrivateAssets="all" Condition="!$(TargetFramework.StartsWith('net4'))" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.*" IncludeAssets="build; compile" PrivateAssets="all" />
   </ItemGroup>
   <PropertyGroup>
     <WeaverConfiguration>
       <Weavers>
         <PropertyChanged />
-        <Isolator InterfaceNames="IExternalApplication|IExternalDBApplication|IExternalCommand" EnableDebug="false" />
       </Weavers>
     </WeaverConfiguration>
   </PropertyGroup>

@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.3.0] / 2026-05-10
 ### Features
 - Update installation folder to `AppData` to support `Revit 2027` change location.
-- Enable `Isolator.Fody` to support constext isolation in `.NET Core`.
 ### Updated
 - Update `ricaun.Revit.UI` to `0.9.0`.
 - Update `AppName` to show `ContextNumber` in the `GetInfo` method.
