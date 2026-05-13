@@ -4,7 +4,7 @@
 [![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](../..)
 [![Nuke](https://img.shields.io/badge/Nuke-Build-blue)](https://nuke.build/)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Build](../../actions/workflows/Build.yml/badge.svg)](../../actions)
+[![Build](https://github.com/ricaun-io/RevitAddin.CommandLoader/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/RevitAddin.CommandLoader/actions)
 
 ![CommandLoader](https://github.com/ricaun-io/RevitAddin.CommandLoader/assets/12437519/f54aadb6-5df7-4586-ad08-d4b9e85524d7)
 
