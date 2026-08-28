@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RevitAddin.CommandLoader.Services
 {
@@ -102,13 +103,22 @@ namespace RevitAddin.CommandLoader.Services
 
         private static string GetString(string url)
         {
-#pragma warning disable SYSLIB0014 // Type or member is obsolete
-            using (var client = new System.Net.WebClient())
+            //using (var client = new System.Net.WebClient())
+            //{
+            //    client.Headers.Add(System.Net.HttpRequestHeader.UserAgent, typeof(GistGithubUtils).Assembly.GetName().Name);
+            //    return client.DownloadString(url);
+            //}
+            using (var client = new System.Net.Http.HttpClient())
             {
-                client.Headers.Add(System.Net.HttpRequestHeader.UserAgent, typeof(GistGithubUtils).Assembly.GetName().Name);
-                return client.DownloadString(url);
+                client.DefaultRequestHeaders.Add("User-Agent", typeof(GistGithubUtils).Assembly.GetName().Name);
+                var task = Task.Run(async () =>
+                {
+                    var response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+                    return await response.Content.ReadAsStringAsync();
+                });
+                return task.GetAwaiter().GetResult();
             }
-#pragma warning restore SYSLIB0014 // Type or member is obsolete
         }
     }
 
