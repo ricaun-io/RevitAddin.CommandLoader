@@ -102,11 +102,13 @@ namespace RevitAddin.CommandLoader.Services
 
         private static string GetString(string url)
         {
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
             using (var client = new System.Net.WebClient())
             {
                 client.Headers.Add(System.Net.HttpRequestHeader.UserAgent, typeof(GistGithubUtils).Assembly.GetName().Name);
                 return client.DownloadString(url);
             }
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
         }
     }
 
