@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution/">
+    <File Path="CHANGELOG.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Build/Build.csproj" />
+  <Project Path="RevitAddin.CommandLoader.Tests/RevitAddin.CommandLoader.Tests.csproj" />
+  <Project Path="RevitAddin.CommandLoader/RevitAddin.CommandLoader.csproj" />
+</Solution>

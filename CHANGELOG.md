@@ -4,10 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.3.0] / 2026-05-10
+## [1.3.0] / 2026-05-10 - 2026-08-28
 ### Features
 - Update installation folder to `AppData` to support `Revit 2027` change location.
-- Update project to use `ricaun.Revit.Sdk`.
+- Update project to use `ricaun.Revit.Sdk` with `TargetFrameworks`.
+### Removed
+- Remove support for Revit 2018 and 2017.
 ### Updated
 - Update `ricaun.Revit.UI` to `0.9.1`.
 - Update `AppName` to show `ContextNumber` in the `GetInfo` method.

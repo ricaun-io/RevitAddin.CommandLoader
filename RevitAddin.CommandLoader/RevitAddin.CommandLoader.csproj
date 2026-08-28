@@ -3,8 +3,7 @@
   <PropertyGroup>
     <AppLoader>Debug</AppLoader>
     <UseWPF>true</UseWPF>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <Configurations>Debug 2017;2017;Debug 2021;2021;2025;Debug 2025</Configurations>
+    <TargetFrameworks>2027;2026;2025;2024;2023;2022;2021;2020;2019</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -60,9 +59,10 @@
 
   <!-- Revit 2025+ -->
   <ItemGroup Condition="$(IsRevitVersionNetCore)">
-    <PackageReference Include="System.CodeDom" Version="8.0.0" />
+    <PackageReference Include="System.CodeDom" Version="10.*" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
   </ItemGroup>
+  
   <ItemGroup>
     <Resource Include="Resources\CommandLoader.tiff" />
   </ItemGroup>
