@@ -1,10 +1,10 @@
 # RevitAddin.CommandLoader
 
-[![Revit 2017](https://img.shields.io/badge/Revit-2017+-blue.svg)](../..)
-[![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](../..)
+[![Revit 2019](https://img.shields.io/badge/Revit-2019+-blue.svg)](../..)
+[![Visual Studio 2026](https://img.shields.io/badge/Visual%20Studio-2026-blue)](../..)
 [![Nuke](https://img.shields.io/badge/Nuke-Build-blue)](https://nuke.build/)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Build](../../actions/workflows/Build.yml/badge.svg)](../../actions)
+[![Build](https://github.com/ricaun-io/RevitAddin.CommandLoader/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/RevitAddin.CommandLoader/actions)
 
 ![CommandLoader](https://github.com/ricaun-io/RevitAddin.CommandLoader/assets/12437519/f54aadb6-5df7-4586-ad08-d4b9e85524d7)
 
@@ -93,7 +93,12 @@ Just copy the `gist` link in the `RevitAddin.CommandLoader` compiler and execute
 
 ## Installation
 
-* Download and install [RevitAddin.CommandLoader.exe](../../releases/latest/download/RevitAddin.CommandLoader.zip)
+Install bundle using the installer [RevitAddin.CommandLoader.exe](https://github.com/ricaun-io/RevitAddin.CommandLoader/releases/latest/download/RevitAddin.CommandLoader.zip) or using [AppBundleTool](https://github.com/ricaun-io/ricaun.AppBundleTool) with the following command: 
+```shell
+AppBundleTool -a https://github.com/ricaun-io/RevitAddin.CommandLoader/releases/latest/download/RevitAddin.CommandLoader.bundle.zip -i
+```
+
+The `RevitAddin.CommandLoader.bundle` is installed in the `%AppData%\Autodesk\ApplicationPlugins\RevitAddin.CommandLoader.bundle` folder.
 
 ## Video
 
