@@ -7,5 +7,5 @@
   </Folder>
   <Project Path="Build/Build.csproj" />
   <Project Path="RevitAddin.CommandLoader.Tests/RevitAddin.CommandLoader.Tests.csproj" />
-  <Project Path="RevitAddin.CommandLoader/RevitAddin.CommandLoader.csproj" />
+  <Project Path="RevitAddin.CommandLoader/RevitAddin.CommandLoader.csproj" Id="82070359-36da-4441-a59d-9018b6a8b348" />
 </Solution>
