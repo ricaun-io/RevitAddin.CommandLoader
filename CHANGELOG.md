@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Features
 - Update installation folder to `AppData` to support `Revit 2027` change location.
 ### Updated
-- Update `ricaun.Revit.UI` to `0.9.0`.
+- Update `ricaun.Revit.UI` to `0.9.1`.
 - Update `AppName` to show `ContextNumber` in the `GetInfo` method.
 ### Build
 - Update `ricaun.Nuke.PackageBuilder` to version `1.12.0` to change installation folder to `AppData`.
